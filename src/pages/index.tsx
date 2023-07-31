@@ -1,16 +1,13 @@
-import { HomeContainer, Product } from "@/styles/pages/home";
-import { useKeenSlider } from "keen-slider/react"
+import { HomeContainer, Product } from '@/styles/pages/home'
+import { useKeenSlider } from 'keen-slider/react'
 
-import Image from "next/image";
+import Image from 'next/image'
+import Stripe from 'stripe'
 
-import shirt1 from "@/assets/camisetas/1.png"
-import shirt2 from "@/assets/camisetas/2.png"
-import shirt3 from "@/assets/camisetas/3.png"
+import { stripe } from '@/lib/stripe'
+import { GetStaticProps } from 'next'
 
-import "keen-slider/keen-slider.min.css"
-import { stripe } from "@/lib/stripe";
-import { GetServerSideProps } from "next";
-import Stripe from "stripe";
+import 'keen-slider/keen-slider.min.css'
 
 interface HomeProps {
   products: {
@@ -25,45 +22,53 @@ export default function Home({ products }: HomeProps) {
   const [sliderRef] = useKeenSlider({
     slides: {
       perView: 1.8,
-      spacing: 48
-    }
+      spacing: 48,
+    },
   })
 
   return (
     <HomeContainer ref={sliderRef} className="keen-slider">
-      {products.map(product => (
-        <Product key={product.id} className="keen-slider__slide" href={`/product/${product.id}`}>
-        <Image src={product.imageUrl} alt="" width={520} height={480} />
+      {products.map((product) => (
+        <Product
+          key={product.id}
+          className="keen-slider__slide"
+          href={`/product/${product.id}`}
+        >
+          <Image src={product.imageUrl} alt="" width={520} height={480} />
 
-        <footer>
-          <strong>{product.name}</strong>
-          <span>{product.price}</span>
-        </footer>
-      </Product>
+          <footer>
+            <strong>{product.name}</strong>
+            <span>{product.price}</span>
+          </footer>
+        </Product>
       ))}
     </HomeContainer>
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const response = await stripe.products.list({
-    expand: ['data.default_price']
+    expand: ['data.default_price'],
   })
 
-  const products = response.data.map(product => {
+  const products = response.data.map((product) => {
     const price = product.default_price as Stripe.Price
 
     return {
       id: product.id,
       name: product.name,
       imageUrl: product.images[0],
-      price: price.unit_amount as number / 100
+      price: new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+      }).format((price.unit_amount as number) / 100),
     }
   })
 
   return {
     props: {
-      products
-    }
+      products,
+    },
+    revalidate: 60 * 60 * 2, // 2 hours
   }
 }
