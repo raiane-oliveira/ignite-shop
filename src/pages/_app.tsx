@@ -2,10 +2,17 @@ import { globalStyles } from '@/styles/global'
 import { Container } from '@/styles/pages/app'
 import type { AppProps } from 'next/app'
 
+import { Roboto } from 'next/font/google'
+
 import { CartProvider } from 'use-shopping-cart'
 import { Header } from '@/components/Header'
 
 globalStyles()
+
+const roboto = Roboto({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+})
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -18,7 +25,7 @@ export default function App({ Component, pageProps }: AppProps) {
       currency="BRL"
       shouldPersist
     >
-      <Container>
+      <Container className={roboto.className}>
         <Header />
         <Component {...pageProps} />
       </Container>
