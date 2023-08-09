@@ -42,12 +42,16 @@ export const Product = styled('div', {
 
     strong: {
       fontSize: '$lg',
+      lineHeight: '1.6',
     },
 
     span: {
+      display: 'block',
       fontSize: '$xl',
       fontWeight: 'bold',
       color: '$green300',
+      marginTop: '0.25rem',
+      lineHeight: '1.4',
     },
   },
 

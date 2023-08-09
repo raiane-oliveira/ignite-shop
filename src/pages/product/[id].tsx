@@ -20,7 +20,8 @@ interface ProductProps {
     imageUrl: string
     price: string
     description: string
-    defaultPriceId: string
+    priceId: string
+    quantity: number
   }
 }
 
@@ -33,7 +34,7 @@ export default function Product({ product }: ProductProps) {
       setIsCreatingCheckoutSession(true)
 
       const response = await axios.post('/api/checkout', {
-        priceId: product.defaultPriceId,
+        cartItems: [product],
       })
 
       const { checkoutUrl } = response.data
@@ -107,7 +108,8 @@ export const getStaticProps: GetStaticProps<any, { id: string }> = async ({
           currency: 'BRL',
         }).format((price.unit_amount as number) / 100),
         description: product.description,
-        defaultPriceId: price.id,
+        priceId: price.id,
+        quantity: 1,
       },
     },
     revalidate: 60 * 60 * 1, // 1 hour

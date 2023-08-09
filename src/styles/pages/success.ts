@@ -12,13 +12,14 @@ export const SuccessContainer = styled('main', {
     fontSize: '$2xl',
     fontWeight: 'bold',
     lineHeight: 1.4,
+    marginBottom: '1.5rem',
   },
 
   p: {
     color: '$gray300',
     fontSize: '$xl',
     lineHeight: 1.4,
-    maxWidth: 560,
+    maxWidth: '36.875rem',
     textAlign: 'center',
   },
 
@@ -38,13 +39,24 @@ export const SuccessContainer = styled('main', {
 })
 
 export const ImageContainer = styled('div', {
-  borderRadius: '0.5rem',
+  display: 'flex',
+  alignItems: 'center',
+  marginBottom: '3.25rem',
+})
+
+export const ImageBg = styled('div', {
+  borderRadius: '50%',
   background: 'linear-gradient(180deg, #1EA483 0%, #7465D4 100%)',
-  padding: '1.22rem 0.3rem',
+  boxShadow: '0px 0px 60px 0px rgba(0, 0, 0, 0.80)',
+  padding: '1.22rem',
   width: '100%',
-  maxWidth: 130,
-  height: 145,
-  margin: '4rem 0 2rem 0',
+  maxWidth: '8.75rem',
+  height: '8.75rem',
+  overflow: 'hidden',
+
+  '& + &': {
+    marginLeft: '-2.5rem',
+  },
 
   display: 'grid',
   placeContent: 'center',
