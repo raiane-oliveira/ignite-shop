@@ -29,4 +29,7 @@ export const {
       '2xl': '2rem',
     },
   },
+  media: {
+    desktop: '(min-width: 1024px)',
+  },
 })

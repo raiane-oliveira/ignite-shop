@@ -1,4 +1,9 @@
-import { HomeContainer, Product } from '@/styles/pages/home'
+import {
+  HomeContainer,
+  Product,
+  PrevButtonSlider,
+  NextButtonSlider,
+} from '@/styles/pages/home'
 import { useKeenSlider } from 'keen-slider/react'
 
 import Link from 'next/link'
@@ -15,6 +20,8 @@ import { useShoppingCart } from 'use-shopping-cart'
 import { priceFormatter } from '@/utils/format-price'
 import { Cart } from '@/components/Cart'
 import { Product as ProductShoppingCart } from 'use-shopping-cart/core'
+import { CaretLeft, CaretRight } from '@phosphor-icons/react'
+import { useState } from 'react'
 
 interface Product {
   id: string
@@ -31,12 +38,25 @@ interface HomeProps {
 }
 
 export default function Home({ products }: HomeProps) {
+  const [currentSlide, setCurrentSlide] = useState(0)
   const { addItem, cartDetails } = useShoppingCart()
 
-  const [sliderRef] = useKeenSlider({
+  const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
+    initial: 0,
+    breakpoints: {
+      '(min-width: 800px)': {
+        slides: {
+          perView: 1.8,
+          spacing: 48,
+        },
+      },
+    },
     slides: {
-      perView: 1.8,
-      spacing: 48,
+      perView: 1,
+      spacing: 24,
+    },
+    slideChanged(slider) {
+      setCurrentSlide(slider.track.details.rel)
     },
   })
 
@@ -49,6 +69,25 @@ export default function Home({ products }: HomeProps) {
       </Head>
 
       <HomeContainer ref={sliderRef} className="keen-slider">
+        <PrevButtonSlider
+          type="button"
+          onClick={() => instanceRef.current?.prev()}
+          disabled={currentSlide === 0}
+        >
+          <CaretLeft />
+        </PrevButtonSlider>
+
+        <NextButtonSlider
+          type="button"
+          onClick={() => instanceRef.current?.next()}
+          disabled={
+            currentSlide ===
+            instanceRef.current?.track.details.slides.length - 1
+          }
+        >
+          <CaretRight />
+        </NextButtonSlider>
+
         {products.map((product) => {
           const productInCart = productsInCart.find(
             (productCart) => productCart.id === product.id,

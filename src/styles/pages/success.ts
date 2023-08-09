@@ -62,6 +62,7 @@ export const ImageBg = styled('div', {
   placeContent: 'center',
 
   img: {
+    maxWidth: '100%',
     objectFit: 'cover',
   },
 })

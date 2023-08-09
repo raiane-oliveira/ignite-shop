@@ -93,7 +93,8 @@ export const ShoppingCartListContainer = styled(Dialog.Content, {
   top: 0,
   right: '-31rem',
   height: '100%',
-  width: '30rem',
+  maxWidth: '30rem',
+  width: '100%',
   zIndex: 999,
   transition: 'all .3s',
 
@@ -178,6 +179,7 @@ export const CartCheckoutContainer = styled('div', {
 
   gap: '3.56rem',
   marginTop: 'auto',
+  paddingTop: '1rem',
 })
 
 export const CartDetailsPrice = styled('div', {

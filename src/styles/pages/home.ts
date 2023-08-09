@@ -5,7 +5,54 @@ export const HomeContainer = styled('main', {
   width: '100%',
   maxWidth: 'calc(100vw - ((100vw - 1180px) / 2))',
   marginLeft: 'auto',
-  minHeight: 656,
+
+  '@desktop': {
+    minHeight: 656,
+  },
+  position: 'relative',
+})
+
+const BaseButtonSlider = styled('button', {
+  display: 'none',
+  position: 'absolute',
+  height: '100%',
+  zIndex: 9999,
+  border: 0,
+
+  cursor: 'pointer',
+
+  '&:disabled': {
+    display: 'none',
+  },
+
+  svg: {
+    width: '2rem',
+    height: '2rem',
+    color: '$gray300',
+  },
+
+  '@desktop': {
+    display: 'block',
+    paddingRight: '1rem',
+    paddingLeft: '4.5rem',
+
+    svg: {
+      width: '3rem',
+      height: '3rem',
+    },
+  },
+})
+
+export const PrevButtonSlider = styled(BaseButtonSlider, {
+  background:
+    'linear-gradient(to left, rgba(18, 18, 20, 0.00) 0%, rgba(18, 18, 20, 0.75) 100%)',
+  left: 0,
+})
+
+export const NextButtonSlider = styled(BaseButtonSlider, {
+  background:
+    'linear-gradient(to right, rgba(18, 18, 20, 0.00) 0%, rgba(18, 18, 20, 0.75) 100%)',
+  right: 0,
 })
 
 export const Product = styled('div', {
@@ -33,12 +80,15 @@ export const Product = styled('div', {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
+    gap: '1rem',
 
     background: 'rgba(0,0,0,0.6)',
 
-    transform: 'translateY(110%)',
-    opacity: 0,
-    transition: 'all 0.2s ease-in-out',
+    '@desktop': {
+      transform: 'translateY(110%)',
+      opacity: 0,
+      transition: 'all 0.2s ease-in-out',
+    },
 
     strong: {
       fontSize: '$lg',
