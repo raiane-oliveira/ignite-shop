@@ -12,6 +12,9 @@ import Stripe from 'stripe'
 import axios from 'axios'
 import { useState } from 'react'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
+import { Loading } from '@/components/Loading'
+import { Container } from '@/styles/pages/app'
 
 interface ProductProps {
   product: {
@@ -28,6 +31,12 @@ interface ProductProps {
 export default function Product({ product }: ProductProps) {
   const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] =
     useState(false)
+
+  const { isFallback } = useRouter()
+
+  if (isFallback) {
+    return <Loading />
+  }
 
   async function handleBuyProduct() {
     try {
