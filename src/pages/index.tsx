@@ -15,8 +15,6 @@ import { useShoppingCart } from 'use-shopping-cart'
 import { priceFormatter } from '@/utils/format-price'
 import { Cart } from '@/components/Cart'
 import { Product as ProductShoppingCart } from 'use-shopping-cart/core'
-import { ChangeEvent } from 'react'
-import { DialogTriggerProps } from '@radix-ui/react-dialog'
 
 interface Product {
   id: string
