@@ -15,6 +15,8 @@ import { useShoppingCart } from 'use-shopping-cart'
 import { priceFormatter } from '@/utils/format-price'
 import { Cart } from '@/components/Cart'
 import { Product as ProductShoppingCart } from 'use-shopping-cart/core'
+import { ChangeEvent } from 'react'
+import { DialogTriggerProps } from '@radix-ui/react-dialog'
 
 interface Product {
   id: string
@@ -70,7 +72,14 @@ export default function Home({ products }: HomeProps) {
                   </div>
 
                   <Cart.Root>
-                    <Cart.Trigger green onClick={() => addItem(product)}>
+                    <Cart.Trigger
+                      green
+                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                      onClick={(e: any) => {
+                        e.preventDefault()
+                        addItem(product)
+                      }}
+                    >
                       {productInCart?.quantity >= 1 && (
                         <Cart.Amount amount={productInCart.quantity} />
                       )}
