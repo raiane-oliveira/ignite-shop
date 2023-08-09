@@ -14,7 +14,6 @@ import { useState } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { Loading } from '@/components/Loading'
-import { Container } from '@/styles/pages/app'
 
 interface ProductProps {
   product: {
@@ -86,7 +85,14 @@ export default function Product({ product }: ProductProps) {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: [{ params: { id: 'prod_OLwkumWjSvEh09' } }],
+    paths: [
+      { params: { id: 'prod_OLwkumWjSvEh09' } },
+      {
+        params: {
+          id: 'prod_OLwlQSThmORFTn',
+        },
+      },
+    ],
     fallback: true,
   }
 }
