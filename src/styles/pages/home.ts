@@ -16,7 +16,7 @@ const BaseButtonSlider = styled('button', {
   display: 'none',
   position: 'absolute',
   height: '100%',
-  zIndex: 9999,
+  zIndex: 10,
   border: 0,
 
   cursor: 'pointer',

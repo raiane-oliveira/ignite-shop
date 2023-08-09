@@ -4,6 +4,7 @@ export const ProductContainer = styled('main', {
   display: 'grid',
   justifyItems: 'center',
   padding: '0 1.5rem',
+  gap: '1.5rem',
 
   '@desktop': {
     gridTemplateColumns: '1fr 1fr',
@@ -11,8 +12,6 @@ export const ProductContainer = styled('main', {
     gap: '4.5rem',
     padding: 0,
   },
-
-  gap: '1.5rem',
 
   maxWidth: 1180,
   margin: '0 auto',
