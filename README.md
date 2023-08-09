@@ -13,7 +13,7 @@
 </p>
 
 <h4 align="center"> 
-	🚧  Ignite Shop 🗃️ Em construção...  🚧
+	✔️  Ignite Shop - Completed  ✔️
 </h4>
 
 <p align="center">
@@ -46,6 +46,8 @@ This challenge was offered in Rocketseat's Ignite course.
 - NextJS
 - TypeScript
 - Stitches
+- use-shopping-cart
+- Mobile First
 
 ## 🤝 Feedbacks
 
