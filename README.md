@@ -26,20 +26,21 @@
 
 ## 💻 About
 
-An E-commerce application that connect to Stripe API to make purchases of shirts. Allows you to navigate between products, being redirect to the Stripe checkout page and it'll return a success page containing information about the purchase.
+An E-commerce application that connects to Stripe API to make purchases of shirts. Allows you to navigate between products, being redirected to the Stripe checkout page, which returns a success page containing information about the purchase.
 
-It uses Static-Site Generation and Server Side Rendering to improve performance.
+It uses Static-Site Generation and Server Side Rendering to improve performance and SEO.
 
 <img src="https://i.imgur.com/f1gPf4d.png" />
 
 This challenge was offered in Rocketseat's Ignite course.
+The responsiveness was developed using the mobile-first technique.
 
 ## 🪸 Features
 
-- [x] Listing of your profile with image, number of followers, name, and other information available through the GitHub API.
-- [x] List and filter all issues in the repository with a short summary of its contents
-- [x] Create a page to display a complete post (issue)
-- [x] List post's comments
+- [x] List Stripe products.
+- [x] Add a product to the shopping cart.
+- [x] Get the page product with the possibility of buying it.
+- [x] Successful page redirect if the user completes the purchase.
 
 ## 🛠 Tech Stack
 
@@ -47,7 +48,6 @@ This challenge was offered in Rocketseat's Ignite course.
 - TypeScript
 - Stitches
 - use-shopping-cart
-- Mobile First
 
 ## 🤝 Feedbacks
 
